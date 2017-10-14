@@ -6,8 +6,16 @@
      body:   RandomData.random_paragraph
    )
  end
+
+ Post.find_or_create_by(title: 'CP16 assignment title', body: 'CP16 assignment body')
  posts = Post.all
+ post1 = Post.last
  
+ Comment.create!(
+ 	post: post1,
+ 	body: 'Unique body'
+ )
+
  100.times do
    Comment.create!(
      post: posts.sample,
