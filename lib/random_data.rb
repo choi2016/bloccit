@@ -17,6 +17,12 @@
      sentence = strings.join(" ")
      sentence.capitalize << "."
    end
+
+   def self.random_number
+    numbers = ('1'..'9').to_a
+    numbers.shuffle!
+    numbers[0,rand(1..3)].join
+   end
  
    def self.random_word
      letters = ('a'..'z').to_a
