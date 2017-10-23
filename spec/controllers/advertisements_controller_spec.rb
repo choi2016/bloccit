@@ -60,25 +60,18 @@ RSpec.describe AdvertisementsController, type: :controller do
 
   describe "ADVERTISEMENT create" do
     it "increases the number of Advertisement by 1" do
-      expect{post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_number}}.to change(Advertisement,:count).by(1)
+      expect{post :create, params: {advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_number}}}.to change(Advertisement,:count).by(1)
     end
     
     it "assigns the new advertisement to @advertisement" do
-      post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_number}
+      post :create, params:{advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_number}}
       expect(assigns(:advertisement)).to eq Advertisement.last
     end
     
     it "redirects to the new advertisement" do
-      post :create, advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_number}
+      post :create, params:{advertisement: {title: RandomData.random_sentence, copy: RandomData.random_paragraph, price: RandomData.random_number}}
       expect(response).to redirect_to Advertisement.last
     end
   end
-=begin
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
-  end
-=end
+
 end
