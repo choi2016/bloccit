@@ -14,7 +14,15 @@
      body: RandomData.random_paragraph
    )
  end
+
+ 50.times do
+ 	Question.create!(
+ 		title: RandomData.random_question,
+ 		body: RandomData.random_paragraph,
+ 		resolved: "0"
+ 	)
+ end
  
  puts "Seed finished"
  puts "#{Post.count} posts created"
- puts "#{Comment.count} comments created"
+ puts "#{Question.count} questionss created"
