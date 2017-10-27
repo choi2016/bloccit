@@ -11,10 +11,12 @@ RSpec.describe SponsoredPostsController, type: :controller do
       get :show, params:{topic_id: my_topic.id, id: my_sponsored_post.id}
       expect(response).to have_http_status(:success)
     end
+
     it "renders the #show view" do
       get :show, params:{topic_id: my_topic.id, id: my_sponsored_post.id}
       expect(response).to render_template :show
     end
+
     it "assigns my_sponsored_post to @sponsored_post" do
       get :show, params:{topic_id: my_topic.id, id: my_sponsored_post.id}
       expect(assigns(:sponsored_post)).to eq(my_sponsored_post)
@@ -37,6 +39,22 @@ RSpec.describe SponsoredPostsController, type: :controller do
       expect(assigns(:sponsored_post)).not_to be_nil
     end
   end
+
+  describe 'Sponsored post create' do
+    it 'increases the number of Sponsored post by 1' do
+       expect{ post :create, params: { topic_id: my_topic.id, sponsored_post: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_number } } }.to change(SponsoredPost,:count).by(1)
+    end 
+
+    it 'assigns the new sponsored post to @sponsored_post' do
+       post :create, params: { topic_id: my_topic.id, sponsored_post: { title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_number } }
+      expect(assigns(:sponsored_post)).to eq SponsoredPost.last
+    end
+
+    it 'redirects to the new post' do
+       post :create, params: { topic_id: my_topic.id, sponsored_post: {title: RandomData.random_sentence, body: RandomData.random_paragraph, price: RandomData.random_number } }
+       expect(response).to redirect_to [my_topic, SponsoredPost.last]
+    end
+  end 
 
   describe "GET #edit" do
     it "returns http success" do
