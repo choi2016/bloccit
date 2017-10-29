@@ -1,6 +1,14 @@
 class UsersController < ApplicationController
+   ActionController::Parameters.permit_all_parameters = true
+   
    def new
      @user = User.new
+   end
+
+   def confirm
+     @user = User.new
+     @user.name = params[:user][:name]
+     @user.email = params[:user][:email]
    end
 
    def create
