@@ -1,2 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.user_info {
+	margin-top: 5px;;
+	margin-right: 5px;
+	display: inline-block;
+	background-color: orange;
+	border:inset;
+}
+
+.nav {
+  margin-top: 5px;
+}
