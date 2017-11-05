@@ -74,3 +74,6 @@ build-iPhoneSimulator/
 
 .byebug_history
 >>>>>>> First commit and README update
+
+# Ignore application configuration
+/config/application.yml
